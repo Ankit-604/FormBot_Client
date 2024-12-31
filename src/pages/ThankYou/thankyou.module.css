@@ -1,0 +1,46 @@
+.thankYouContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5); 
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 80%;
+}
+
+.overlay h1 {
+  font-weight: 600;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.overlay p {
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.image {
+  width: 100%;
+  max-width: 600px; /* Limits image size */
+  border-radius: 10px; /* Optional: Rounds corners */
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow to image */
+}
