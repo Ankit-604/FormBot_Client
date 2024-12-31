@@ -1,15 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-let baseURL;
-
-if (import.meta.env.VITE_API_STATUS === "DEVELOPMENT") {
-  baseURL = "http://localhost:3071";
-}
-
-if (import.meta.env.VITE_API_STATUS === "PRODUCTION") {
-  baseURL = import.meta.env.VITE_API_BASE_URL;
-}
+let baseURL = import.meta.env.VITE_API_BASE_URL;
 
 export const api = axios.create({
   baseURL: `${baseURL}`,
@@ -115,7 +107,7 @@ export const registerUser = async (username, email, password) => {
       email,
       password,
     });
-    return response.data.message; //
+    return response.data.message;
   } catch (error) {
     console.error("Error registering:", error.response.data.message);
 
