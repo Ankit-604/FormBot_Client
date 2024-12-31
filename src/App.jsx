@@ -11,9 +11,9 @@ import ThankYou from "./pages/ThankYou/ThankYou";
 function App() {
   let baseURL;
 
- // if (import.meta.env.VITE_API_STATUS === "DEVELOPMENT") {
-  //   baseURL = "http://localhost:3071";
-  // }
+ if (import.meta.env.VITE_API_STATUS === "DEVELOPMENT") {
+    baseURL = "http://localhost:3071";
+  }
 
   if (import.meta.env.VITE_API_STATUS === "PRODUCTION") {
     baseURL = import.meta.env.VITE_API_BASE_URL;
