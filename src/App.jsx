@@ -9,43 +9,43 @@ import FormEditor from "./pages/FormEditor/FormEditor";
 import FormBot from "./pages/FormBot/FormBot";
 import ThankYou from "./pages/ThankYou/ThankYou";
 function App() {
-  let baseURL;
+ //  let baseURL;
 
- if (import.meta.env.VITE_API_STATUS === "DEVELOPMENT") {
-    baseURL = "http://localhost:3071";
-  }
+ // if (import.meta.env.VITE_API_STATUS === "DEVELOPMENT") {
+ //    baseURL = "http://localhost:3071";
+ //  }
 
-  if (import.meta.env.VITE_API_STATUS === "PRODUCTION") {
-    baseURL = import.meta.env.VITE_API_BASE_URL;
-  }
-  const [isLoading, setIsLoading] = useState(true);
+ //  if (import.meta.env.VITE_API_STATUS === "PRODUCTION") {
+ //    baseURL = import.meta.env.VITE_API_BASE_URL;
+ //  }
+ //  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const checkBackend = async () => {
-      try {
-        const response = await fetch(`${baseURL}/`);
-        if (response.ok) {
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.log("Backend waking up...");
-        console.error("Error checking backend health:", error);
-        setTimeout(checkBackend, 3000);
-      }
-    };
+ //  useEffect(() => {
+ //    const checkBackend = async () => {
+ //      try {
+ //        const response = await fetch(`${baseURL}/`);
+ //        if (response.ok) {
+ //          setIsLoading(false);
+ //        }
+ //      } catch (error) {
+ //        console.log("Backend waking up...");
+ //        console.error("Error checking backend health:", error);
+ //        setTimeout(checkBackend, 3000);
+ //      }
+ //    };
 
-    checkBackend();
-  }, []);
+ //    checkBackend();
+ //  }, []);
 
-  if (isLoading) {
-    return (
-      <div className="loading-screen">
-        <h1>Form Bot</h1>
-        <p>Waking up the app. Please wait...</p>
-        <ClipLoader color="#ffffff" size={50} />
-      </div>
-    );
-  }
+ //  if (isLoading) {
+ //    return (
+ //      <div className="loading-screen">
+ //        <h1>Form Bot</h1>
+ //        <p>Waking up the app. Please wait...</p>
+ //        <ClipLoader color="#ffffff" size={50} />
+ //      </div>
+ //    );
+ //  }
   return (
     <Router>
       <Routes>
