@@ -1,7 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-let baseURL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3071";
+let baseURL = import.meta.env.VITE_API_BASE_URL;
 
 export const api = axios.create({
   baseURL: baseURL,
