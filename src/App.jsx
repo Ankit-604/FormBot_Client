@@ -1,8 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { useState, useEffect } from "react";
 import LandingPage from "./pages/LandingPage/LandingPage";
@@ -15,17 +11,16 @@ import ThankYou from "./pages/ThankYou/ThankYou";
 function App() {
   let baseURL;
 
-  if(import.meta.env.VITE_API_STATUS === "DEVELOPMENT"){
-    baseURL = "http://localhost:5000";
+  if (import.meta.env.VITE_API_STATUS === "DEVELOPMENT") {
+    baseURL = "http://localhost:3071";
   }
-  
-  if(import.meta.env.VITE_API_STATUS === "PRODUCTION"){
+
+  if (import.meta.env.VITE_API_STATUS === "PRODUCTION") {
     baseURL = import.meta.env.VITE_API_BASE_URL;
   }
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate a backend health check or wake-up process
     const checkBackend = async () => {
       try {
         const response = await fetch(`${baseURL}/`);
@@ -35,7 +30,7 @@ function App() {
       } catch (error) {
         console.log("Backend waking up...");
         console.error("Error checking backend health:", error);
-        setTimeout(checkBackend, 3000); // Retry every 3 seconds
+        setTimeout(checkBackend, 3000);
       }
     };
 
@@ -43,7 +38,6 @@ function App() {
   }, []);
 
   if (isLoading) {
-    // Display loading screen while waiting
     return (
       <div className="loading-screen">
         <h1>Form Bot</h1>
@@ -55,13 +49,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        {/* Define routes for the login and home pages */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/dashboard/" element={<Dashboard />} />
         <Route path="/login/" element={<LoginPage />} />
         <Route path="/editor/" element={<FormEditor />} />
-        <Route path="/formbot" element={<FormBot/>}/>
-        <Route path="/thankyou" element={<ThankYou/>}/>
+        <Route path="/formbot" element={<FormBot />} />
+        <Route path="/thankyou" element={<ThankYou />} />
         <Route path="*" element={<LandingPage />} />
       </Routes>
     </Router>
