@@ -99,9 +99,24 @@ export const loginUser = async (email, password) => {
   }
 };
 
+// export const registerUser = async (username, email, password) => {
+//   try {
+//     console.log(username, email, password);
+//     const response = await axios.post(`${baseURL}/auth/register`, {
+//       username,
+//       email,
+//       password,
+//     });
+//     return response.data.message;
+//   } catch (error) {
+//     console.error("Error registering:", error.response.data.message);
+
+//     return error.response.data.message;
+//   }
+// };
 export const registerUser = async (username, email, password) => {
   try {
-    console.log(username, email, password);
+    console.log("Attempting to register user:", username, email);
     const response = await axios.post(`${baseURL}/auth/register`, {
       username,
       email,
@@ -109,9 +124,13 @@ export const registerUser = async (username, email, password) => {
     });
     return response.data.message;
   } catch (error) {
-    console.error("Error registering:", error.response.data.message);
-
-    return error.response.data.message;
+    if (error.response) {
+      console.error("Error registering:", error.response.data.message);
+      return error.response.data.message;
+    } else {
+      console.error("Error registering:", error.message);
+      return error.message;
+    }
   }
 };
 
