@@ -1,8 +1,15 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
+//let baseURL = import.meta.env.VITE_API_BASE_URL;
 let baseURL = import.meta.env.VITE_API_BASE_URL;
-
+if (!baseURL) {
+  console.error(
+    "VITE_API_BASE_URL is undefined. Please check your environment variables."
+  );
+} else {
+  console.log("Base URL is set to:", baseURL);
+}
 export const api = axios.create({
   baseURL: baseURL,
 });
