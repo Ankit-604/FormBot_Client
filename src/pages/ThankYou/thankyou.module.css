@@ -18,37 +18,36 @@
   text-align: center;
 }
 
-h1 {
+.heading {
   font-weight: 700;
   font-size: 3.5rem;
   margin-bottom: 20px;
   color: #081b30;
 }
 
-p {
-  font-weight: 400;
+.para {
+  font-weight: 600;
   font-size: 1.5rem;
   margin-bottom: 10px;
-  font-weight: 600;
   color: #2e2d2d;
 }
 
 @media (max-width: 768px) {
-  h1 {
+  .heading {
     font-size: 3rem;
   }
 
-  p {
+  .para {
     font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
-  h1 {
+  .heading {
     font-size: 2.5rem;
   }
 
-  p {
+  .para {
     font-size: 1.1rem;
   }
 }
