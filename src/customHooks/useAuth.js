@@ -28,7 +28,7 @@ const useAuth = () => {
           setIsLoggedIn(true);
         } else {
           console.error("User data not found");
-          navigate("/login"); // Redirect to login
+          navigate("/login");
         }
       } catch (error) {
         console.error("Error during authentication:", error);

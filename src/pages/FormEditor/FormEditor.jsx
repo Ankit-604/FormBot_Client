@@ -292,6 +292,25 @@ const FormEditor = () => {
       });
   };
 
+  // const handleShare = () => {
+  //   let userId;
+  //   if (sessionStorage.getItem("selectedWorkspace")) {
+  //     userId = JSON.parse(sessionStorage.getItem("selectedWorkspace"))._id;
+  //   } else {
+  //     userId = userData._id;
+  //   }
+  //   const link = `${window.location.origin}/formbot?formName=${selectedForm}&folderName=${selectedFolder}&userId=${userId}`;
+
+  //   navigator.clipboard
+  //     .writeText(link)
+  //     .then(() => {
+  //       alert("Link copied to clipboard!");
+  //     })
+  //     .catch((err) => {
+  //       console.error("Failed to copy link:", err);
+  //     });
+  // };
+
   const handleShare = () => {
     let userId;
     if (sessionStorage.getItem("selectedWorkspace")) {
@@ -299,7 +318,9 @@ const FormEditor = () => {
     } else {
       userId = userData._id;
     }
-    const link = `${window.location.origin}/formbot?formName=${selectedForm}&folderName=${selectedFolder}&userId=${userId}`;
+    const encodedFormName = encodeURIComponent(selectedForm);
+    const encodedFolderName = encodeURIComponent(selectedFolder);
+    const link = `${window.location.origin}/formbot?formName=${encodedFormName}&folderName=${encodedFolderName}&userId=${userId}`;
 
     navigator.clipboard
       .writeText(link)

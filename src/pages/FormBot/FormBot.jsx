@@ -129,10 +129,7 @@ const FormBot = () => {
         break;
       case "Date":
         if (!hasSentDatePicker) {
-          setMessages((prev) => [
-            ...prev,
-            { type: "bot", content: "Please select a date." },
-          ]);
+          setMessages((prev) => [...prev, { type: "bot" }]);
           setShowDatePicker(true);
           setHasSentDatePicker(true);
         }
@@ -147,7 +144,6 @@ const FormBot = () => {
             ...prev,
             {
               type: "bot",
-              content: "Please provide a rating (1 to 5 stars).",
             },
           ]);
           setShowRatingInput(true);
@@ -160,7 +156,7 @@ const FormBot = () => {
         setInputPlaceholder("Please enter a number...");
         setMessages((prev) => [
           ...prev,
-          { ...newMessage, content: "Please enter a number." },
+          // { ...newMessage, content: "Please enter a number." },
         ]);
         setIsInputDisabled(false);
         break;
@@ -169,7 +165,7 @@ const FormBot = () => {
         setInputPlaceholder("Please enter your email...");
         setMessages((prev) => [
           ...prev,
-          { ...newMessage, content: "Please enter your email." },
+          // { ...newMessage, content: "Please enter your email." },
         ]);
         setIsInputDisabled(false);
         break;
@@ -178,14 +174,14 @@ const FormBot = () => {
         setInputPlaceholder("Please enter your phone number...");
         setMessages((prev) => [
           ...prev,
-          { ...newMessage, content: "Please enter your phone number." },
+          // { ...newMessage, content: "Please enter your phone number." },
         ]);
         setIsInputDisabled(false);
         break;
       case "Button":
         setMessages((prev) => [
           ...prev,
-          { ...newMessage, content: "Please press the Submit Button" },
+          // { ...newMessage, content: "Please press the Submit Button" },
         ]);
         setHasSentTextInput(false);
         setInputPlaceholder("");
