@@ -121,7 +121,7 @@ const FormBot = () => {
         break;
       case "TextInput":
         if (!hasSentTextInput) {
-          setMessages((prev) => [...prev, { type: "bot", content: " " }]);
+          setMessages((prev) => [...prev]);
           setHasSentTextInput(true);
           setIsInputDisabled(false);
           setInputPlaceholder("Please enter your response...");
@@ -154,35 +154,23 @@ const FormBot = () => {
       case "Number":
         setInputType("number");
         setInputPlaceholder("Please enter a number...");
-        setMessages((prev) => [
-          ...prev,
-          // { ...newMessage, content: "Please enter a number." },
-        ]);
+        setMessages((prev) => [...prev]);
         setIsInputDisabled(false);
         break;
       case "Email":
         setInputType("email");
         setInputPlaceholder("Please enter your email...");
-        setMessages((prev) => [
-          ...prev,
-          // { ...newMessage, content: "Please enter your email." },
-        ]);
+        setMessages((prev) => [...prev]);
         setIsInputDisabled(false);
         break;
       case "Phone":
         setInputType("phone");
         setInputPlaceholder("Please enter your phone number...");
-        setMessages((prev) => [
-          ...prev,
-          // { ...newMessage, content: "Please enter your phone number." },
-        ]);
+        setMessages((prev) => [...prev]);
         setIsInputDisabled(false);
         break;
       case "Button":
-        setMessages((prev) => [
-          ...prev,
-          // { ...newMessage, content: "Please press the Submit Button" },
-        ]);
+        setMessages((prev) => [...prev]);
         setHasSentTextInput(false);
         setInputPlaceholder("");
         setIsSubmitButton(true);
@@ -306,7 +294,7 @@ const FormBot = () => {
         ...prev,
         {
           type: "user",
-          content: `Selected Rating: ${tempRating} Stars`,
+          content: `${tempRating} Stars`,
         },
       ]);
       setResponses((prev) => [...prev, response]);
@@ -378,7 +366,6 @@ const FormBot = () => {
         ))}
       </div>
 
-      {/* Show rating input if requested */}
       {showRatingInput && (
         <div className={styles.InputSectionText}>
           <div className={`${styles.BoxRating} `}>
@@ -408,7 +395,6 @@ const FormBot = () => {
         </div>
       )}
 
-      {/* Input section, shown only when 'Rating' type is not active */}
       {!isSubmitButton && !showRatingInput && (
         <div className={`${styles.InputSectionText} `}>
           {!showDatePicker && (
