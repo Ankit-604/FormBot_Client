@@ -1,21 +1,54 @@
 .thankYouContainer {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
+  background-color: #f5593e65;
   font-family: "Open Sans", sans-serif;
+  text-align: center;
+  color: #422929;
 }
 
-.thankyouContainer h1 {
-  font-weight: 600;
-  font-size: 3rem;
-  margin-bottom: 30px;
+.content {
+  background: #eec1c1;
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(119, 16, 16, 0.623);
+  text-align: center;
 }
 
-.thankyouContainer p {
+h1 {
+  font-weight: 700;
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  color: #081b30;
+}
+
+p {
   font-weight: 400;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #2e2d2d;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
 }

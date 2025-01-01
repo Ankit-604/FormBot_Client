@@ -3,8 +3,13 @@ import styles from "./thankyou.module.css";
 const ThankYou = () => {
   return (
     <div className={styles.thankYouContainer}>
-      <h1>Thank You for your response</h1>
-      <p>You can close this tab ...</p>{" "}
+      <div className={styles.content}>
+        <h1>Thank You!</h1>
+        <p>
+          Your response has been received. Thank you for taking the time to
+          share your thoughts with us.
+        </p>
+      </div>
     </div>
   );
 };
