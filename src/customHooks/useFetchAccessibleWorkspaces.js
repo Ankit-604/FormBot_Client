@@ -12,12 +12,10 @@ const useFetchAccessibleWorkspaces = (setSelectedWorkspace) => {
       try {
         const userId = localStorage.getItem("userId");
 
-        console.log("userId", userId);
+        //console.log("userId", userId);
 
-        const response = await api.get(
-          `/access/workspaces/${userId}`
-        );
-        console.log(response.data);
+        const response = await api.get(`/access/workspaces/${userId}`);
+        //console.log(response.data);
 
         let currentId;
         if (sessionStorage.getItem("selectedWorkspace")) {
@@ -27,17 +25,17 @@ const useFetchAccessibleWorkspaces = (setSelectedWorkspace) => {
         } else {
           currentId = userId;
         }
-        console.log("currentId", currentId);
+        //console.log("currentId", currentId);
         const workspacesAvailable = response.data.workspaces;
         const matchingWorkspace = workspacesAvailable.find(
           (workspace) => workspace.userId === currentId
         );
 
         if (matchingWorkspace) {
-          console.log("matchingWorkspace", matchingWorkspace);
+          //console.log("matchingWorkspace", matchingWorkspace);
           setPermission(matchingWorkspace.permission);
         } else {
-          console.log("hello dadfasdf;asdfs");
+          console.log("else part");
         }
 
         setWorkspaces([...response.data.workspaces]);
@@ -48,7 +46,7 @@ const useFetchAccessibleWorkspaces = (setSelectedWorkspace) => {
         } else {
           const userResponse = await fetchUserData(userId);
           if (userResponse) {
-            console.log("goinginside");
+            //console.log("goinginside");
             setSelectedWorkspace(userResponse);
             sessionStorage.setItem(
               "selectedWorkspace",

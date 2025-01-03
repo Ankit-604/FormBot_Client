@@ -43,7 +43,7 @@ const Switch = () => {
           const response = await api.put(`/user/${userId}`, {
             theme,
           });
-          console.log("Theme updated successfully", response.data);
+          //console.log("Theme updated successfully", response.data);
           await fetchUserData(userData._id);
         } catch (error) {
           console.error("Error updating theme:", error);

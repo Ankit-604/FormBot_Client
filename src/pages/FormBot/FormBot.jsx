@@ -129,7 +129,7 @@ const FormBot = () => {
         break;
       case "Date":
         if (!hasSentDatePicker) {
-          setMessages((prev) => [...prev, { type: "bot" }]);
+          setMessages((prev) => [...prev]);
           setShowDatePicker(true);
           setHasSentDatePicker(true);
         }

@@ -54,23 +54,20 @@ const Dashboard = () => {
   }, [theme]);
 
   useEffect(() => {
-    console.log(forms);
+    //console.log(forms);
   }, [forms]);
 
   useEffect(() => {
-    console.log(selectedWorkspace);
+    //console.log(selectedWorkspace);
   }, [selectedWorkspace]);
 
   useEffect(() => {
-    console.log("permission", permission);
+    //console.log("permission", permission);
   }, [permission]);
 
   useEffect(() => {
-    console.log(selectedWorkspace);
+    //console.log(selectedWorkspace);
   }, [selectedWorkspace]);
-  /**
-   * Toggles the visibility of the dropdown menu
-   */
 
   const handleWorkspaceClick = async (workspaceId) => {
     try {
@@ -82,13 +79,11 @@ const Dashboard = () => {
           "selectedWorkspace",
           JSON.stringify(workspaceData)
         );
-        // Reorder the workspaces array
         const reorderedWorkspaces = workspaces.filter(
           (id) => id !== workspaceId
         );
         setWorkspaceList([workspaces, ...reorderedWorkspaces]);
 
-        // Assuming folderForms needs to be fetched for the selected workspace
         const folderForms =
           JSON.parse(localStorage.getItem("folderForms")) || {};
         const folderNamesArray = Object.keys(folderForms);
@@ -116,11 +111,11 @@ const Dashboard = () => {
   };
 
   const handleCreateFolderClick = () => {
-    setIsFolderModalOpen(true); // Open the modal
+    setIsFolderModalOpen(true);
   };
 
   const handleFolderClick = (folderName) => {
-    console.log("Selected folder:", folderName);
+    //console.log("Selected folder:", folderName);
     if (selectedFolder === folderName) {
       setSelectedFolder("");
       sessionStorage.removeItem("selectedFolder");
@@ -140,8 +135,8 @@ const Dashboard = () => {
 
   const handleCloseModal = () => {
     setError("");
-    setIsFolderModalOpen(false); // Close the modal
-    setFolderName(""); // Reset folder name
+    setIsFolderModalOpen(false);
+    setFolderName("");
   };
 
   const handleFolderDone = async () => {
@@ -154,7 +149,6 @@ const Dashboard = () => {
           return;
         }
 
-        // Call the createFolder function and pass the folderName
         const currentFolderData = await createFolder(folderName);
         if (currentFolderData === "UserId not found") {
           navigate("/login");
@@ -162,15 +156,12 @@ const Dashboard = () => {
         }
         fetchUserData();
         console.log(currentFolderData);
-        // Update the folder list with the new folder data
         setFolders(currentFolderData);
 
         console.log("Folder created successfully:", currentFolderData);
 
-        // Close the modal after successful creation
         handleCloseModal();
       } catch (error) {
-        // Handle any errors during the folder creation
         console.error("Error creating folder:", error);
         alert("Failed to create folder. Please try again.");
       }
@@ -180,13 +171,13 @@ const Dashboard = () => {
   };
 
   const confirmDeleteFolder = (folderName) => {
-    setFolderToDelete(folderName); // Set the folder to delete
-    setIsDeleteModalOpen(true); // Open the delete confirmation modal
+    setFolderToDelete(folderName);
+    setIsDeleteModalOpen(true);
   };
 
   const handleCancelDelete = () => {
-    setIsDeleteModalOpen(false); // Close the delete confirmation modal
-    setFolderToDelete(""); // Reset folder to delete
+    setIsDeleteModalOpen(false);
+    setFolderToDelete("");
   };
 
   const handleDeleteFolder = async () => {
@@ -208,7 +199,6 @@ const Dashboard = () => {
     }
   };
 
-  // Form modal handlers
   const handleCreateFormClick = () => {
     setIsFormModalOpen(true);
   };
@@ -225,7 +215,6 @@ const Dashboard = () => {
         const folderForms =
           JSON.parse(localStorage.getItem("folderForms")) || {};
 
-        // Check if the selected folder contains the formName
         if (folderForms[selectedFolder]?.includes(formName)) {
           console.log(
             "Form with this name already exists in the selected folder"
@@ -234,7 +223,6 @@ const Dashboard = () => {
           return;
         }
 
-        // Call the createFolder function and pass the folderName
         const currentFormData = await createForm(formName, selectedFolder);
 
         if (currentFormData === "UserId not found") {
@@ -248,16 +236,13 @@ const Dashboard = () => {
         }
 
         console.log(selectedFolder);
-        // Update the folder list with the new folder data
         setForms(currentFormData[selectedFolder]);
 
         fetchUserData();
         console.log("Form created successfully:", currentFormData);
 
-        // Close the modal after successful creation
         handleCloseFormModal();
       } catch (error) {
-        // Handle any errors during the folder creation
         console.error("Error creating form:", error);
         alert("Failed to create form. Please try again.");
       }
@@ -280,10 +265,8 @@ const Dashboard = () => {
 
   const handleDeleteForm = async () => {
     try {
-      // Make an API call to delete the form, passing formName and folderName
       const currentFormData = await deleteForm(formToDelete, selectedFolder);
       console.log("currentFormData", currentFormData);
-      // Check if the form deletion was successful
       if (currentFormData === "Form not found") {
         alert("Form not found. Please try again.");
         return;
@@ -293,17 +276,15 @@ const Dashboard = () => {
         console.log("currentFormData", currentFormData);
         setForms([]);
         setIsFormDeleteModalOpen(false);
-        setFormToDelete(""); // Reset form name state
+        setFormToDelete("");
         fetchUserData();
         return;
       }
 
       console.log(currentFormData[selectedFolder]);
-      // If the form is successfully deleted, update the form list
-      setForms(currentFormData[selectedFolder]); // Assuming `setForms` updates the list of forms
-      // Close the modal and reset the form state
+      setForms(currentFormData[selectedFolder]);
       setIsFormDeleteModalOpen(false);
-      setFormToDelete(""); // Reset form name state
+      setFormToDelete("");
       fetchUserData();
     } catch (error) {
       console.error("Error deleting form:", error);

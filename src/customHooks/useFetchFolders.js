@@ -1,34 +1,34 @@
 import { useEffect, useState } from "react";
 import { useUserContext } from "../Contexts/UserContext";
-import {api} from "../api/api";
+import { api } from "../api/api";
 
 const useFetchFolders = () => {
-  console.log("Im runni")
-  const { setFolders,setSelectedFolder } = useUserContext(); 
-  const [loading, setLoading] = useState(true); 
-  const [error, setError] = useState(null); 
+  //console.log("Im runni")
+  const { setFolders, setSelectedFolder } = useUserContext();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const selectedWorkspaceData = sessionStorage.getItem("selectedWorkspace");
-  const selectedUserId = selectedWorkspaceData ? JSON.parse(selectedWorkspaceData)._id: null;
-  console.log("selectedUserId", selectedUserId);
+  const selectedUserId = selectedWorkspaceData
+    ? JSON.parse(selectedWorkspaceData)._id
+    : null;
+  //console.log("selectedUserId", selectedUserId);
   let userId;
-  if(!selectedUserId){
+  if (!selectedUserId) {
     userId = localStorage.getItem("userId");
-    console.log("userId", userId);
-  }else{
+    //console.log("userId", userId);
+  } else {
     userId = selectedUserId;
   }
   useEffect(() => {
-
-
     const fetchData = async () => {
       try {
         setLoading(true);
-        console.log("reached")
+        //console.log("reached")
         const response = await api.get(`/protected/user/${userId}`);
-        console.log("response", response);
+        //console.log("response", response);
         const { user, folders } = response.data;
-        console.log("user and folders", user, folders);
+        //console.log("user and folders", user, folders);
         setFolders(folders);
         setSelectedFolder("");
         sessionStorage.setItem("selectedFolder", "");
@@ -40,7 +40,7 @@ const useFetchFolders = () => {
       }
     };
 
-    if (userId) fetchData(); 
+    if (userId) fetchData();
   }, [setFolders]);
 
   return { loading, error };

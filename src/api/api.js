@@ -1,7 +1,6 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
-//let baseURL = import.meta.env.VITE_API_BASE_URL;
 let baseURL = import.meta.env.VITE_API_BASE_URL;
 if (!baseURL) {
   console.error(
@@ -17,7 +16,7 @@ export const api = axios.create({
 api.interceptors.request.use((config) => {
   if (config.url.includes("/protected")) {
     const accessToken = localStorage.getItem("accessToken");
-    console.log("accessToken Checking", accessToken);
+    //console.log("accessToken Checking", accessToken);
     if (!accessToken) {
       window.location.href = "/login";
       return Promise.reject("No access token found");
@@ -83,7 +82,7 @@ export const checkAuthentication = async () => {
 };
 
 export const loginUser = async (email, password) => {
-  console.log(email, password);
+  //console.log(email, password);
   if (!email || !password) {
     console.error("Identifier and password are required");
     return { message: "Identifier and password are required" };
@@ -94,7 +93,7 @@ export const loginUser = async (email, password) => {
       email,
       password,
     });
-    console.log(response.data);
+    //console.log(response.data);
     const { user, accessToken } = response.data;
     localStorage.setItem("accessToken", accessToken);
 
@@ -106,21 +105,6 @@ export const loginUser = async (email, password) => {
   }
 };
 
-// export const registerUser = async (username, email, password) => {
-//   try {
-//     console.log(username, email, password);
-//     const response = await axios.post(`${baseURL}/auth/register`, {
-//       username,
-//       email,
-//       password,
-//     });
-//     return response.data.message;
-//   } catch (error) {
-//     console.error("Error registering:", error.response.data.message);
-
-//     return error.response.data.message;
-//   }
-// };
 export const registerUser = async (username, email, password) => {
   try {
     console.log("Attempting to register user:", username, email);
@@ -143,7 +127,7 @@ export const registerUser = async (username, email, password) => {
 
 export const fetchUserData = async (userId) => {
   try {
-    console.log("userId", userId);
+    //console.log("userId", userId);
     let isOtherWorkspaceData = false;
     let currentId;
     if (!userId) {
@@ -152,9 +136,9 @@ export const fetchUserData = async (userId) => {
     } else {
       currentId = userId;
     }
-    console.log("currentId", currentId);
+    //console.log("currentId", currentId);
     const response = await api.get(`/protected/user/${currentId}`);
-    console.log("fetchUserresponse", response);
+    //console.log("fetch User response", response);
     localStorage.setItem("userData", JSON.stringify(response.data.user));
     localStorage.setItem(
       "folderForms",
