@@ -81,7 +81,6 @@ export const checkAuthentication = async () => {
 };
 
 export const loginUser = async (email, password) => {
-  //console.log(email, password);
   if (!email || !password) {
     console.error("Identifier and password are required");
     return { message: "Identifier and password are required" };
@@ -92,7 +91,6 @@ export const loginUser = async (email, password) => {
       email,
       password,
     });
-    //console.log(response.data);
     const { user, accessToken } = response.data;
     localStorage.setItem("accessToken", accessToken);
 
@@ -106,7 +104,6 @@ export const loginUser = async (email, password) => {
 
 export const registerUser = async (username, email, password) => {
   try {
-    //console.log("Attempting to register user:", username, email);
     const response = await axios.post(`${baseURL}/auth/register`, {
       username,
       email,
@@ -126,7 +123,6 @@ export const registerUser = async (username, email, password) => {
 
 export const fetchUserData = async (userId) => {
   try {
-    //console.log("userId", userId);
     let isOtherWorkspaceData = false;
     let currentId;
     if (!userId) {
@@ -135,16 +131,13 @@ export const fetchUserData = async (userId) => {
     } else {
       currentId = userId;
     }
-    //console.log("currentId", currentId);
     const response = await api.get(`/protected/user/${currentId}`);
-    //console.log("fetch User response", response);
     localStorage.setItem("userData", JSON.stringify(response.data.user));
     localStorage.setItem(
       "folderForms",
       JSON.stringify(response.data.folderForms)
     );
     if (isOtherWorkspaceData) {
-      //console.log("isOtherWorkspaceData", response.data.user);
       sessionStorage.setItem(
         "selectedWorkspace",
         JSON.stringify(response.data.user)
@@ -163,20 +156,17 @@ export const createFolder = async (folderName) => {
     const storedUserId = JSON.parse(
       sessionStorage.getItem("selectedWorkspace")
     )._id;
-    //console.log("storedUserId", storedUserId);
     if (!storedUserId) {
       userId = JSON.parse(localStorage.getItem("userData"))._id;
     } else {
       userId = storedUserId;
     }
-    //console.log("userId for creating folder", userId);
     if (!userId) {
       return "UserId not found";
     }
     const response = await api.post(`/protected/folder/${userId}`, {
       folderName,
     });
-    //console.log("createFolderresponse", response);
     return response.data;
   } catch (error) {
     console.error("Error creating folder:", error);
@@ -204,8 +194,6 @@ export const deleteFolder = async (folderName) => {
       data: { folderName: folderName },
     });
 
-    //console.log("deleteFolderresponse", response);
-
     return response.data;
   } catch (error) {
     console.error("Error deleting folder:", error);
@@ -230,7 +218,6 @@ export const createForm = async (formName, folderName) => {
       formName,
       folderName,
     });
-    //console.log("createFormresponse", response);
 
     return response.data.folderForms;
   } catch (error) {
@@ -257,11 +244,9 @@ export const deleteForm = async (formName, folderName) => {
       return "UserId not found";
     }
 
-    //console.log("formName", formName);
     const response = await api.delete(`/protected/form/${userId}`, {
       data: { formName, folderName },
     });
-    //console.log("deleteFormresponse", response);
     return response.data.folderForms;
   } catch (error) {
     console.error("Error deleting form:", error);

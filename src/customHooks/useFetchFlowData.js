@@ -22,7 +22,6 @@ const useFetchFlowData = (id) => {
           userId = id;
         }
 
-        //console.log("Reached", selectedFolder, selectedForm);
         const response = await api.get(`/protected/form/${userId}`, {
           params: {
             formName: selectedForm,
@@ -31,7 +30,6 @@ const useFetchFlowData = (id) => {
         });
         if (response.status === 200) {
           const data = response.data;
-          //console.log(response);
 
           sessionStorage.setItem("flowData", JSON.stringify(data.elements));
           setFlowData(data.elements);

@@ -13,9 +13,7 @@ const LandingPage = () => {
     }
   };
 
-  useEffect(() => {
-    //console.log(userData);
-  }, [userData]);
+  useEffect(() => {}, [userData]);
 
   const handleSignOut = () => {
     localStorage.removeItem("accessToken");

@@ -14,7 +14,7 @@
   --background-color: #ffffff;
   --text-color: #000000ea;
   --border-color: #d6d6d6;
-  --button-background: #4caf50;
+  --button-background: #1a5fff;
   --button-hover: brightness(0.8);
   --button-active: scale(0.98);
   --logout-color: #e68a3f;
@@ -152,7 +152,7 @@
   border-radius: 6px;
   color: white;
   display: flex;
-  background-color: var(--button-background);
+  background-color: #1a5fff;
   align-items: center;
   justify-content: center;
   font-size: clamp(1rem, 2vw + 1.2rem, 1.6rem);

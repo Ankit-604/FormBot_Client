@@ -70,7 +70,6 @@ const FormBot = () => {
         });
         if (response.status === 200) {
           const data = response.data;
-          //console.log(response);
 
           sessionStorage.setItem("flowData", JSON.stringify(data.elements));
           setFlowData(data.elements);
@@ -176,8 +175,6 @@ const FormBot = () => {
   };
 
   const handleUserInput = () => {
-    //console.log("tempDate", tempDate);
-
     if (showDatePicker && tempDate) {
       const response = {
         buttonType: "Date",
@@ -261,14 +258,12 @@ const FormBot = () => {
         formName: queryParams.formName,
         analytics: type,
       });
-      //console.log(`Analytics updated with ${type}:`, response);
     } catch (error) {
       console.error("Error updating analytics with 'start':", error);
     }
   };
 
   const handleDateSelection = (date) => {
-    //console.log(date);
     setTempDate(date);
   };
 
@@ -277,7 +272,7 @@ const FormBot = () => {
   };
 
   const confirmRatingSelection = () => {
-    //console.log(tempRating);
+    console.log(tempRating);
     if (tempRating > 0) {
       const response = {
         buttonType: "Rating",
@@ -306,7 +301,6 @@ const FormBot = () => {
   };
 
   const submitFormResponses = () => {
-    //console.log("Responses:", responses);
     setIsLoading(true);
 
     const timestamp = new Date();
@@ -332,7 +326,6 @@ const FormBot = () => {
         responses: responsesWithFlowData,
       })
       .then((response) => {
-        //console.log("Responses submitted successfully", response);
         setIsLoading(false);
         updateAnalytics("completed");
         navigate("/thankyou");

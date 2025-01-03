@@ -55,7 +55,6 @@ const LoginPage = () => {
     e.preventDefault();
     setIsLoading(true);
     const { username, email, password } = userData;
-    //console.log(username, email, password);
     const emailError = validateEmail(email);
     const passwordError = validatePassword(password);
     const confirmPasswordError =
@@ -68,9 +67,6 @@ const LoginPage = () => {
       confirmPassword: confirmPasswordError,
     });
 
-    //console.log(username);
-    //console.log(errors);
-
     if (
       !username ||
       emailError?.error ||
@@ -81,7 +77,6 @@ const LoginPage = () => {
       return;
     }
 
-    //console.log(username, email, password);
     try {
       const response = await registerUser(username, email, password);
       setIsLoading(false);
@@ -110,7 +105,6 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    //console.log(userData);
     const { email, password } = userData;
     const emailError = validateEmail(email);
     const passwordError = validatePassword(password);
@@ -126,7 +120,6 @@ const LoginPage = () => {
     }
 
     try {
-      //console.log(email, password);
       const response = await loginUser(email, password);
       setIsLoading(false);
       if (response.message === "Success") {

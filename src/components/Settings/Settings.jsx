@@ -34,7 +34,6 @@ const Settings = ({ setIsSettingsOpen }) => {
 
   useEffect(() => {
     const updatedUserData = JSON.parse(localStorage.getItem("userData"));
-    //console.log("updated", updatedUserData);
     if (updatedUserData) {
       setUserData(updatedUserData);
     }
@@ -48,7 +47,6 @@ const Settings = ({ setIsSettingsOpen }) => {
   }, [isFormUpdated]);
 
   useEffect(() => {
-    //console.log("userDataUpdated", userData);
     if (userData) {
       setFormData({
         username: userData.username,
@@ -138,7 +136,6 @@ const Settings = ({ setIsSettingsOpen }) => {
         setIsLoading(false);
 
         const updatedUserData = await fetchUserData(userData._id);
-        //console.log("updatedUserData", updatedUserData);
         setIsFormUpdated(true);
         localStorage.setItem("userData", JSON.stringify(updatedUserData));
       } else {

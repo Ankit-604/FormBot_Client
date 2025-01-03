@@ -53,27 +53,18 @@ const Dashboard = () => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  useEffect(() => {
-    //console.log(forms);
-  }, [forms]);
+  useEffect(() => {}, [forms]);
 
-  useEffect(() => {
-    //console.log(selectedWorkspace);
-  }, [selectedWorkspace]);
+  useEffect(() => {}, [selectedWorkspace]);
 
-  useEffect(() => {
-    //console.log("permission", permission);
-  }, [permission]);
+  useEffect(() => {}, [permission]);
 
-  useEffect(() => {
-    //console.log(selectedWorkspace);
-  }, [selectedWorkspace]);
+  useEffect(() => {}, [selectedWorkspace]);
 
   const handleWorkspaceClick = async (workspaceId) => {
     try {
       const workspaceData = await fetchUserData(workspaceId);
       if (workspaceData) {
-        //console.log("workspaceData", workspaceData);
         setSelectedWorkspace(workspaceData);
         sessionStorage.setItem(
           "selectedWorkspace",
@@ -97,7 +88,6 @@ const Dashboard = () => {
         );
 
         if (matchingWorkspace) {
-          //console.log("matchingWorkspace", matchingWorkspace);
           setPermission(matchingWorkspace.permission);
         }
       }
@@ -115,7 +105,6 @@ const Dashboard = () => {
   };
 
   const handleFolderClick = (folderName) => {
-    //console.log("Selected folder:", folderName);
     if (selectedFolder === folderName) {
       setSelectedFolder("");
       sessionStorage.removeItem("selectedFolder");
@@ -142,8 +131,6 @@ const Dashboard = () => {
   const handleFolderDone = async () => {
     if (folderName.trim()) {
       try {
-        //console.log(folders, folderName);
-
         if (folders.some((folder) => folder === folderName)) {
           setError("Folder with this name already exists");
           return;
@@ -155,10 +142,7 @@ const Dashboard = () => {
           return;
         }
         fetchUserData();
-        //console.log(currentFolderData);
         setFolders(currentFolderData);
-
-        //console.log("Folder created successfully:", currentFolderData);
 
         handleCloseModal();
       } catch (error) {
@@ -188,7 +172,6 @@ const Dashboard = () => {
         return;
       }
 
-      //console.log(currentFolderData);
       setFolders(currentFolderData.folders);
       setIsDeleteModalOpen(false);
       setFolderToDelete("");
@@ -235,11 +218,9 @@ const Dashboard = () => {
           return;
         }
 
-        //console.log(selectedFolder);
         setForms(currentFormData[selectedFolder]);
 
         fetchUserData();
-        //console.log("Form created successfully:", currentFormData);
 
         handleCloseFormModal();
       } catch (error) {
@@ -253,7 +234,6 @@ const Dashboard = () => {
   };
 
   const confirmDeleteForm = (formName) => {
-    //console.log(formName);
     setFormToDelete(formName);
     setIsFormDeleteModalOpen(true);
   };
@@ -266,7 +246,6 @@ const Dashboard = () => {
   const handleDeleteForm = async () => {
     try {
       const currentFormData = await deleteForm(formToDelete, selectedFolder);
-      //console.log("currentFormData", currentFormData);
       if (currentFormData === "Form not found") {
         alert("Form not found. Please try again.");
         return;
@@ -281,7 +260,6 @@ const Dashboard = () => {
         return;
       }
 
-      //console.log(currentFormData[selectedFolder]);
       setForms(currentFormData[selectedFolder]);
       setIsFormDeleteModalOpen(false);
       setFormToDelete("");
@@ -341,7 +319,6 @@ const Dashboard = () => {
                   className={styles.dropdown}
                 >
                   <ul>
-                    {/* {console.log("workspaces", workspaces)} */}
                     {workspaces &&
                       workspaces.map((workspace) => (
                         <li
@@ -451,7 +428,6 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Folder Modal */}
           {isFolderModalOpen && (
             <div className={styles.Modal}>
               <div className={styles.ModalContent}>
@@ -507,7 +483,6 @@ const Dashboard = () => {
               </div>
             </div>
           )}
-          {/* Form Modal */}
           {isFormModalOpen && (
             <div className={styles.Modal}>
               <div className={styles.ModalContent}>
@@ -542,7 +517,6 @@ const Dashboard = () => {
             </div>
           )}
 
-          {/* Form Delete Confirmation Modal */}
           {isFormDeleteModalOpen && (
             <div className={styles.deleteModal}>
               <div className={styles.ModalContent}>

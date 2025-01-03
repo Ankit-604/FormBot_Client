@@ -18,7 +18,6 @@ const useAuth = () => {
         }
 
         const userResponse = await api.get(`/protected/user/${userId}`);
-        //console.log("userResponse", userResponse);
         if (userResponse.data) {
           setUserId(userResponse.data.user._id);
           setUserData({

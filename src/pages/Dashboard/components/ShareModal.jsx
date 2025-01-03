@@ -27,11 +27,9 @@ const ShareModal = ({ isOpen, onClose }) => {
           permission: action,
         }
       );
-      //console.log("API Response:", response.data);
       alert("Invite sent successfully!");
       onClose();
     } catch (error) {
-      //console.error("Error sharing workspace:", error);
       alert("Failed to send invite. Please try again.");
     }
   };
