@@ -60,7 +60,7 @@ const ResponseDisplay = () => {
           formName: selectedForm,
         },
       });
-      console.log(response.data);
+      //console.log(response.data);
       setResponses(response.data.responses);
     } catch (error) {
       setResponses([]);
@@ -74,7 +74,7 @@ const ResponseDisplay = () => {
   }, [flowData]);
 
   const getResponseForButton = (user, buttonType, order) => {
-    console.log(user, buttonType, order);
+    //console.log(user, buttonType, order);
     const response = responses.find(
       (res) =>
         res.user === user &&

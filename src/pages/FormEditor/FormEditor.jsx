@@ -93,7 +93,7 @@ const FormEditor = () => {
   };
 
   useEffect(() => {
-    console.log(flowData);
+    //console.log(flowData);
     const formName = sessionStorage.getItem("selectedForm");
     if (formName) {
       setCurrentForm(formName);
@@ -228,7 +228,7 @@ const FormEditor = () => {
   };
 
   const handleSave = () => {
-    console.log("flowData", flowData);
+    //console.log("flowData", flowData);
     const newErrors = {};
     flowData.forEach((button) => {
       if (
@@ -239,7 +239,7 @@ const FormEditor = () => {
       }
     });
 
-    console.log("newErrors", newErrors);
+    //console.log("newErrors", newErrors);
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
@@ -271,7 +271,7 @@ const FormEditor = () => {
         content: button.content || "",
       }));
 
-    console.log("payload", payload, selectedFolder, selectedForm);
+    //console.log("payload", payload, selectedFolder, selectedForm);
     const selectedWorkspace = JSON.parse(
       sessionStorage.getItem("selectedWorkspace")
     );
@@ -284,7 +284,7 @@ const FormEditor = () => {
         elements: payload,
       })
       .then((response) => {
-        console.log("Data saved successfully", response.data);
+        //.log("Data saved successfully", response.data);
         setIsSaveModalOpen(true);
       })
       .catch((error) => {
@@ -543,7 +543,7 @@ const FormEditor = () => {
                           button.buttonType
                         ) && (
                           <>
-                            {console.log("button", button.id)}
+                            {/* {console.log("button", button.id)} */}
                             <input
                               type="text"
                               placeholder={

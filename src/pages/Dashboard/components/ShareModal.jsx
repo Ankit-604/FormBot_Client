@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./sharemodal.module.css"; // Ensure to style your modal as needed.
+import styles from "./sharemodal.module.css";
 import axios from "axios";
 import { useUserContext } from "../../../Contexts/UserContext";
 import { api } from "../../../api/api";
@@ -27,11 +27,11 @@ const ShareModal = ({ isOpen, onClose }) => {
           permission: action,
         }
       );
-      console.log("API Response:", response.data);
+      //console.log("API Response:", response.data);
       alert("Invite sent successfully!");
-      onClose(); // Close modal after successful API call.
+      onClose();
     } catch (error) {
-      console.error("Error sharing workspace:", error);
+      //console.error("Error sharing workspace:", error);
       alert("Failed to send invite. Please try again.");
     }
   };

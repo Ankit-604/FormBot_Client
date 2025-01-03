@@ -20,14 +20,14 @@ const Dashboard = () => {
 
   const navigate = useNavigate();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [isFolderModalOpen, setIsFolderModalOpen] = useState(false); // State for modal visibility
+  const [isFolderModalOpen, setIsFolderModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const [folderToDelete, setFolderToDelete] = useState(""); // Folder to delete
-  const [folderName, setFolderName] = useState(""); // State for folder name input
-  const [isFormModalOpen, setIsFormModalOpen] = useState(false); // Form modal visibility
-  const [isFormDeleteModalOpen, setIsFormDeleteModalOpen] = useState(false); // Form delete modal
-  const [formToDelete, setFormToDelete] = useState(""); // Form to delete
-  const [formName, setFormName] = useState(""); // State for form name input
+  const [folderToDelete, setFolderToDelete] = useState("");
+  const [folderName, setFolderName] = useState("");
+  const [isFormModalOpen, setIsFormModalOpen] = useState(false);
+  const [isFormDeleteModalOpen, setIsFormDeleteModalOpen] = useState(false);
+  const [formToDelete, setFormToDelete] = useState("");
+  const [formName, setFormName] = useState("");
   const {
     folders,
     setFolders,
@@ -40,7 +40,7 @@ const Dashboard = () => {
     setPermission,
   } = useUserContext();
 
-  const [forms, setForms] = useState([]); // State to manage forms
+  const [forms, setForms] = useState([]);
   const [error, setError] = useState("");
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
@@ -73,7 +73,7 @@ const Dashboard = () => {
     try {
       const workspaceData = await fetchUserData(workspaceId);
       if (workspaceData) {
-        console.log("workspaceData", workspaceData);
+        //console.log("workspaceData", workspaceData);
         setSelectedWorkspace(workspaceData);
         sessionStorage.setItem(
           "selectedWorkspace",
@@ -97,7 +97,7 @@ const Dashboard = () => {
         );
 
         if (matchingWorkspace) {
-          console.log("matchingWorkspace", matchingWorkspace);
+          //console.log("matchingWorkspace", matchingWorkspace);
           setPermission(matchingWorkspace.permission);
         }
       }
@@ -142,7 +142,7 @@ const Dashboard = () => {
   const handleFolderDone = async () => {
     if (folderName.trim()) {
       try {
-        console.log(folders, folderName);
+        //console.log(folders, folderName);
 
         if (folders.some((folder) => folder === folderName)) {
           setError("Folder with this name already exists");
@@ -155,10 +155,10 @@ const Dashboard = () => {
           return;
         }
         fetchUserData();
-        console.log(currentFolderData);
+        //console.log(currentFolderData);
         setFolders(currentFolderData);
 
-        console.log("Folder created successfully:", currentFolderData);
+        //console.log("Folder created successfully:", currentFolderData);
 
         handleCloseModal();
       } catch (error) {
@@ -188,7 +188,7 @@ const Dashboard = () => {
         return;
       }
 
-      console.log(currentFolderData);
+      //console.log(currentFolderData);
       setFolders(currentFolderData.folders);
       setIsDeleteModalOpen(false);
       setFolderToDelete("");
@@ -235,11 +235,11 @@ const Dashboard = () => {
           return;
         }
 
-        console.log(selectedFolder);
+        //console.log(selectedFolder);
         setForms(currentFormData[selectedFolder]);
 
         fetchUserData();
-        console.log("Form created successfully:", currentFormData);
+        //console.log("Form created successfully:", currentFormData);
 
         handleCloseFormModal();
       } catch (error) {
@@ -253,7 +253,7 @@ const Dashboard = () => {
   };
 
   const confirmDeleteForm = (formName) => {
-    console.log(formName);
+    //console.log(formName);
     setFormToDelete(formName);
     setIsFormDeleteModalOpen(true);
   };
@@ -266,7 +266,7 @@ const Dashboard = () => {
   const handleDeleteForm = async () => {
     try {
       const currentFormData = await deleteForm(formToDelete, selectedFolder);
-      console.log("currentFormData", currentFormData);
+      //console.log("currentFormData", currentFormData);
       if (currentFormData === "Form not found") {
         alert("Form not found. Please try again.");
         return;
@@ -281,7 +281,7 @@ const Dashboard = () => {
         return;
       }
 
-      console.log(currentFormData[selectedFolder]);
+      //console.log(currentFormData[selectedFolder]);
       setForms(currentFormData[selectedFolder]);
       setIsFormDeleteModalOpen(false);
       setFormToDelete("");
@@ -341,7 +341,7 @@ const Dashboard = () => {
                   className={styles.dropdown}
                 >
                   <ul>
-                    {console.log("workspaces", workspaces)}
+                    {/* {console.log("workspaces", workspaces)} */}
                     {workspaces &&
                       workspaces.map((workspace) => (
                         <li
